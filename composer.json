@@ -1,0 +1,10 @@
+{
+    "name": "ajfranzoia/gina",
+    "description": "Lightweight MVC framework",
+    "authors": [
+        {
+            "name": "Augusto Franzoia",
+            "email": "ajfranzoia@gmail.com"
+        }
+    ]
+}
