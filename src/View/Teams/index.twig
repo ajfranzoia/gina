@@ -1,0 +1,22 @@
+{% extends "main.twig" %}
+
+{% block content %}
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Market value</th>
+			</tr>
+		</thead>
+	    <tbody>
+		    {% for team in teams %}
+		    	<tr>
+		        	<td>{{ team.name|e }}</td>
+		        	<td>{{team.squadMarketValue|e }}</td>
+		    	</tr>
+		    {% endfor %}
+    	</tbody>
+	</table>
+
+{% endblock %}

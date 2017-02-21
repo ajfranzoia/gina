@@ -9,7 +9,9 @@
     ],
     "require": {
         "symfony/http-foundation": "^3.2",
-        "raveren/kint": "^1.0"
+        "raveren/kint": "^1.0",
+        "twig/twig": "~2.0",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "autoload": {
         "psr-4": {
