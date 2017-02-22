@@ -27,7 +27,7 @@ class TeamFavorite extends Model {
      * @return array
      */
     public static function getAllIds() {
-    	$favorites = new A(TeamFavorite::find('all'));
+    	$favorites = new A(self::find('all'));
 
     	return $favorites->reduce(function($result, $item) {
     		$result[] = $item->team_id;
