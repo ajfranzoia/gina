@@ -40,8 +40,13 @@ class Dispatcher {
 		// Parse and get current route data
         $route = $this->router->parseRequest($request);
 
-        // Obtain the corrent controller according to the route data
-		$controller = $this->getController($route['controller'], $request);
+        // Obtain the controller from the factory given the parsed route
+        $controllerFactory = new ControllerFactory();
+		$controller = $controllerFactory->loadController($route['controller'], [
+            'request' => $request,
+            'response' => $this->response,
+            'config' => $this->config
+        ]);
 
         // Initialize models library
         $this->initializeModels();
@@ -50,36 +55,6 @@ class Dispatcher {
         $response = $this->getResponse($controller, $route);
         $response->send();
 	}
-
-    /**
-     * Get the proper application controller instance that will handle the request
-     * TODO: refactor code to a controller factory
-     *
-     * @param string $name
-     * @param Request $request
-     * @return Controller Controller instance
-     */
-    protected function getController($name, $request)
-    {
-    	// Convert controller name from route to CamelCase version
-		$controller = Utils::toCamelCase($name);
-		$className = 'App\\Controller\\' . $controller . 'Controller';
-
-		// Use reflection to obtain controller class
-		try {
-        	$reflection = new \ReflectionClass($className);
-		} catch (\Exception $e) {
-	        throw new Exception("Missing controller: $className");
-		}
-
-		// Check if controller class can be instantiated
-        if ($reflection->isAbstract() || $reflection->isInterface()) {
-	        throw new Exception("Controller $className cannot be instantiated");
-        }
-
-        // Return a new instance of the controller, passing the current request to constructor
-        return $reflection->newInstance($request, $this->response, $this->config);
-    }
 
     /**
      * Get response from controller given the current route.
