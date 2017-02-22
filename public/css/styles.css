@@ -1,5 +1,5 @@
 body {
-  padding-top: 100px;
+  padding-top: 75px;
 }
 
 #navbar-app-description {
@@ -12,7 +12,7 @@ body {
 	background: #f9f9f9;
 	border-radius: 6px;
 	margin-bottom: 20px;
-	min-height: 100px;
+	min-height: 105px;
 	position: relative;
 }
 
@@ -27,14 +27,15 @@ body {
 }
 
 .team-name {
-	font-size: 30px;
+	color: #444;
+	font-size: 40px;
 	margin-top: 10px;
 }
 
 .team-market-value {
 	text-transform: uppercase;
 	color: #aaa;
-	font-size: 20px;
+	font-size: 25px;
 	margin-left: 20px;
 }
 
@@ -45,4 +46,8 @@ body {
 	right: 10px;
 	font-size: 40px;
 	line-height: 40px;
+}
+
+.team-favorite-toggle.working {
+	opacity: 0.3;
 }

@@ -6,6 +6,7 @@ use Gina\Controller;
 use Gina\Utils;
 use App\Model\TeamFavorite;
 use App\Lib\FootballDataApi;
+use Arrayzy\ArrayImitator as A;
 
 /**
  * Teams controller
@@ -22,9 +23,16 @@ class TeamsController extends Controller {
 		$footbalDataConfig = $this->config->get('footbalData');
 		$api = new FootballDataApi($footbalDataConfig);
 
+		$teams = $api->getTeams();
+		$favoritesIds = TeamFavorite::getAllIds();
+
 		return $this->render([
-			'teams' => $api->getTeams(),
-			'favorites' => TeamFavorite::find('all')
+			'favorites' => $teams->filter(function($t) use ($favoritesIds) {
+				return in_array($t['id'], $favoritesIds);
+			}),
+			'other' => $teams->filter(function($t) use ($favoritesIds) {
+				return !in_array($t['id'], $favoritesIds);
+			})
 		]);
 	}
 

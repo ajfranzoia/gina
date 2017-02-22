@@ -1,0 +1,16 @@
+<div class="team" data-team-id="{{ team.id|e }}" data-team-name="{{ team.name|e }}"  data-is-favorite="{{ isFavorite }}">
+	<img class="team-crest" src="{{ team.crestUrl|e }}">
+	<div class="team-info">
+		<h2 class="team-name">
+			{{ team.name|e }}
+			<span class="team-market-value" title="Market value">{{ team.squadMarketValue|e }}</span>
+		</h2>
+	</div>
+	<a href="#" class="team-favorite-toggle">
+		{% if isFavorite %}
+			<i class="fa fa-star"></i>
+		{% else %}
+		    <i class="fa fa-star-o"></i>
+		{% endif %}
+	</a>
+</div>

@@ -2,21 +2,11 @@
 
 {% block content %}
 
-	<h1>League teams</h1>
+	<h1>Premier League Teams</h1>
 
-    {% for team in teams %}
-	<div class="team">
-		<img class="team-crest" src="{{ team.crestUrl|e }}">
-		<div class="team-info">
-			<h2 class="team-name">
-				{{ team.name|e }}
-				<span class="team-market-value" title="Market value">{{ team.squadMarketValue|e }}</span>
-			</h2>
-		</div>
-		<div class="team-favorite-toggle">
-			<i class="fa fa-star-o"></i>
-		</div>
-	</div>
-    {% endfor %}
+	<div id="teams">
+	    {% include 'Teams/_teams_list.twig' with {'teams': favorites, 'isFavorite': true} %}
+	    {% include 'Teams/_teams_list.twig' with {'teams': other, 'isFavorite': false} %}
+    </div>
 
 {% endblock %}

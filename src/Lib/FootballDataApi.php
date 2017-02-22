@@ -41,6 +41,10 @@ class FootballDataApi {
 		// Parse JSON response into teams array
 		$teams = json_decode($result->getBody()->getContents(), true)['teams'];
 
+		foreach ($teams as &$team) {
+			$team['id'] = self::extractId($team);
+		}
+
 		// Sort by name and return teams
 		return (new A($teams))->customSort(function($a, $b) {
 		    if ($a['name'] === $b['name']) {
@@ -50,6 +54,19 @@ class FootballDataApi {
 		    return ($a['name'] < $b['name']) ? -1 : 1;
 		});
 	}
+
+	/**
+	 * Extract team id from the data, since it's not provided in the api response.
+	 * Parses the href link to extract the id.
+	 *
+	 * @param  array $team
+	 * @return string
+	 */
+    public static function extractId($team) {
+    	preg_match('/\/(\d+)$/', $team['_links']['self']['href'], $result);
+
+    	return isset($result[1]) ? $result[1] : null;
+    }
 
 	/**
 	 * Create and return Guzzle http client
