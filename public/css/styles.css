@@ -2,6 +2,47 @@ body {
   padding-top: 100px;
 }
 
-.navbar-text {
+#navbar-app-description {
 	color: white;
+}
+
+.team {
+	padding: 10px;
+	border: 2px solid #e5e5e5;
+	background: #f9f9f9;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	min-height: 100px;
+	position: relative;
+}
+
+.team-crest {
+	float: left;
+	height: 80px;
+	width: 80px;
+}
+
+.team-info {
+	margin-left: 100px;
+}
+
+.team-name {
+	font-size: 30px;
+	margin-top: 10px;
+}
+
+.team-market-value {
+	text-transform: uppercase;
+	color: #aaa;
+	font-size: 20px;
+	margin-left: 20px;
+}
+
+
+.team-favorite-toggle {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 40px;
+	line-height: 40px;
 }
