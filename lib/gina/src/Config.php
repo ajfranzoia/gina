@@ -23,7 +23,7 @@ class Config {
 	public static function loadFromIni($path) {
 		$instance = new self();
 
-		$values = parse_ini_file($path);
+		$values = parse_ini_file($path, true);
 		foreach ($values as $key => $value) {
 			$instance->set($key, $value);
 		}

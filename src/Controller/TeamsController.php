@@ -16,12 +16,12 @@ class TeamsController extends Controller {
 	 * @return mixed
 	 */
 	public function index($request) {
-		$leagueId = $this->config->get('apiLeagueId');
+		$leagueId = $this->config->get('footbalData')['leagueId'];
 
 		$client = new \GuzzleHttp\Client();
 		$res = $client->request('GET', "http://api.football-data.org/v1/competitions/$leagueId/teams", [
 			'headers' => [
-				'X-Auth-Token' => $this->config->get('apiAuthToken')
+				'X-Auth-Token' => $this->config->get('footbalData')['authToken']
 			]
 		]);
 		$result = $res->getBody()->getContents();
