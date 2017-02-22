@@ -16,28 +16,38 @@ class Controller {
      *
      * @var string
      */
-    private $name;
+    protected $name;
 
     /**
      * Current request
      *
      * @var Request
      */
-	private $request;
+	protected $request;
 
     /**
      * Current response
      *
      * @var Response
      */
-    private $response;
+    protected $response;
+
+    /**
+     * @var View
+     */
+    protected $view;
+
+    /**
+     * @var Config
+     */
+    protected $config;
 
     /**
      * Current action
      *
      * @var string
      */
-    private $currentAction;
+    protected $currentAction;
 
     /**
      * Initializes current request and response properties.
