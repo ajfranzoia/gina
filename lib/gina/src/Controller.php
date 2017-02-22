@@ -54,9 +54,10 @@ class Controller {
      *
      * @param Request $request
      */
-	public function __construct(Request $request, Response $response) {
+	public function __construct(Request $request, Response $response, Config $config) {
 		$this->request = $request;
 		$this->response = $response;
+        $this->config = $config;
         $this->view = new View();
 
         // Set controller name

@@ -15,7 +15,3 @@ define('APP', ROOT . DS . 'src' . DS);
 
 // Require composer's autoload
 require ROOT . DS . 'vendor' . DS . 'autoload.php';
-
-// Require app configs
-require 'config.php';
-

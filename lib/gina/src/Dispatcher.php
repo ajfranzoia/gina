@@ -26,6 +26,7 @@ class Dispatcher {
 	public function __construct() {
 		$this->router = new Router();
 		$this->response = new Response();
+        $this->config = Config::loadFromIni(ROOT . DS . 'config' . DS . 'parameters.ini');
 	}
 
     /**
@@ -73,7 +74,7 @@ class Dispatcher {
         }
 
         // Return a new instance of the controller, passing the current request to constructor
-        return $reflection->newInstance($request, $this->response);
+        return $reflection->newInstance($request, $this->response, $this->config);
     }
 
     /**
