@@ -93,6 +93,17 @@ class Controller {
         return call_user_func_array($callable, array_merge($namedParams, [$this->request]));
 	}
 
+    /**
+     * Handles the rendering process through the View object for the
+     * given template and context variables.
+     * If $template is an array, it will be considered as $context, and the
+     * template will be guessed from the current action.
+     * Returns the compiled template by the view.
+     *
+     * @param  string|array $template
+     * @param  array  $context
+     * @return Response
+     */
     public function render($template, $context = []) {
         if (is_array($template)) {
             $context = $template;
@@ -105,6 +116,13 @@ class Controller {
         return $this->response;
     }
 
+    /**
+     * Returns a JSON string representation for the given data as a response.
+     * Sets the proper Content-Type header.
+     *
+     * @param  mixed $data
+     * @return Response
+     */
     protected function respondJson($data) {
         $this->response->headers->set('Content-Type', 'application/json');
         $this->response->setContent(json_encode($data));
