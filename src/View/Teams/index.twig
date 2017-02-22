@@ -6,7 +6,7 @@
 
     {% for team in teams %}
 	<div class="team">
-		<object class="team-crest" data="{{ team.crestUrl|e }}" type="image/svg+xml"></object>
+		<img class="team-crest" src="{{ team.crestUrl|e }}">
 		<div class="team-info">
 			<h2 class="team-name">
 				{{ team.name|e }}
