@@ -37,7 +37,7 @@ class Router {
         $urlParts = explode('/', $url);
 
         $controller = isset($urlParts[0]) ? $urlParts[0] : self::DEFAULT_CONTROLLER;
-        $action = isset($urlParts[1]) ? $urlParts[1] : self::DEFAULT_ACTION ;
+        $action = isset($urlParts[1]) ? lcfirst(Utils::toCamelCase($urlParts[1])) : self::DEFAULT_ACTION ;
         $namedParams = array_slice($urlParts, 2);
 
         return compact('controller', 'action', 'namedParams');

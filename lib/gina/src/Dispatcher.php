@@ -58,7 +58,7 @@ class Dispatcher {
     protected function getController($name, $request)
     {
     	// Convert controller name from route to CamelCase version
-		$controller = str_replace(' ', '', ucwords(preg_replace('/[^a-z0-9]+/i', ' ', $name)));
+		$controller = Utils::toCamelCase($name);
 		$className = 'App\\Controller\\' . $controller . 'Controller';
 
 		// Use reflection to obtain controller class
