@@ -142,11 +142,33 @@ App configuration must be done in config/parameters.ini, using the footbalData I
 
 ### Available endpoints
 
-`GET /teams`: returns a full HTML view for the found league teams ordered by favorites and name
-Status codes:
-`POST /teams/add_favorite/{id}`: sets a team as favorite given its id
-Status code:
-`POST /teams/remove_favorite/{id}`: unsets a team as favorite given its id
+* `GET /teams`: returns a full HTML view for the found league teams ordered by favorites and name
+
+Possible responses:
+
+| HTTP code  | Body | Comments |
+| ------------- | ------------- | ------------- |
+| 200  | HTML view  |   |
+
+* `POST /teams/add_favorite/{id}`: sets a team as favorite given its id
+
+Possible responses:
+
+| HTTP code  | Body | Comments |
+| ------------- | ------------- | ------------- |
+| 200  | `{"result": true}`  | Successfully set favorite  |
+| 400  | `{"result": true, "error": "Team is already set as favorite"}`  |  If the target team is already marked as favorite |
+| 405  | `{"result": false, "error": "This action requires POST" }`  |  If the request type is not POST |
+
+* `POST /teams/remove_favorite/{id}`: unsets a team as favorite given its id
+
+Possible responses:
+
+| HTTP code  | Body | Comments |
+| ------------- | ------------- | ------------- |
+| 200  | `{"result": true}`  | Successfully set favorite  |
+| 400  | `{"result": true, "error": "Team is already set as favorite"}`  |  If the target team is already marked as non favorite |
+| 405  | `{"result": false, "error": "This action requires POST" }`  |  If the request type is not POST |
 
 
 ## Framework architecture
