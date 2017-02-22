@@ -143,11 +143,39 @@ App configuration must be done in config/parameters.ini, using the footbalData I
 ### Available endpoints
 
 `GET /teams`: returns a full HTML view for the found league teams ordered by favorites and name
+Status codes:
 `POST /teams/add_favorite/{id}`: sets a team as favorite given its id
+Status code:
 `POST /teams/remove_favorite/{id}`: unsets a team as favorite given its id
 
 
-### Tests
+## Framework architecture
+
+### Third party libraries
+
+Instead of reinventing the wheel, Gina is built using known and tested PHP libraries:
+* [Symfony HTTP foundation component](https://github.com/symfony/http-foundation) provides an object-oriented layer on top of PHP global variables and functions for requests and responses handling. Chosen because ...
+* [Twig](https://github.com/twigphp/Twig) provides advanced template rendering capabilities.
+* [PHP ActiveRecord](https://github.com/jpfuentes2/php-activerecord) provides an easy to use ActiveRecord implementation.
+* [Arrayzy](https://github.com/bocharsky-bw/Arrayzy) provides wrappers for PHP built-in array functions and object-oriented array manipulation library, allowing a more functional array handling.
+* [Kint](https://github.com/raveren/kint) for debugging purposes.
+
+### Design principles
+
+Gina follows the classic Model-View-Controller pattern, but other patterns and principles were also taken into account:
+* Front controller pattern is used in order to catch all the requests and have a single point of entry to the application. The front controller instantiates a new application Dispatcher and handles it the current request for further processing.
+* An application Dispatcher is used to process the current request and obtain a proper HTTP response. The Dispatcher will coordinate the request lifecycle: it will parse the current route, load the correct controller via a controller factory, initialize application models, and obtain the final response by executing the proper controller action. Finally, this generated response is sent to the client.
+* Based on the Factory pattern, a `ControllerFactory` class is used to load the correct controller making use of the PHP Reflection API. The controller class and action method are guessed from the request url.
+* Basic inheritance is used for most framework classes that extend other third party classes, which allows a more convenient customization and overriding.
+
+### Request cycle
+
+An application request cycle is as follows:
+
+
+
+
+## Tests
 
 Framework tests can be run using phpunit by executing `composer run gina-tests`. Composer development packages are required tests to work properly.
 
@@ -155,4 +183,4 @@ Framework tests can be run using phpunit by executing `composer run gina-tests`.
 
 * Provide Gina as a composer package
 * Add more tests and improve coverage
-* Error handling
+* Add proper error handling
