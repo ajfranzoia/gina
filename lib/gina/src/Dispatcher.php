@@ -43,6 +43,9 @@ class Dispatcher {
         // Obtain the corrent controller according to the route data
 		$controller = $this->getController($route['controller'], $request);
 
+        // Initialize models library
+        $this->initializeModels();
+
         // Generate and send response
         $response = $this->getResponse($controller, $route);
         $response->send();
@@ -50,6 +53,7 @@ class Dispatcher {
 
     /**
      * Get the proper application controller instance that will handle the request
+     * TODO: refactor code to a controller factory
      *
      * @param string $name
      * @param Request $request
@@ -99,6 +103,27 @@ class Dispatcher {
         $this->response->setContent($result);
 
         return $this->response;
+    }
+
+    /**
+     * Initializes ActiveRecord library.
+     * Configures models directory and database connection based on
+     * the config values parsed from parameters.ini.
+     *
+     * @return void
+     */
+    protected function initializeModels() {
+        extract($this->config->get('database'));
+
+        \ActiveRecord\Config::initialize(function($cfg) use ($host, $user, $password, $database) {
+            $cfg->set_model_directory(APP . DS . 'Model');
+            $cfg->set_connections([
+                'default' => "mysql://$user:$password@$host/$database",
+            ]);
+            $cfg->set_default_connection('default');
+        });
+
+        \ActiveRecord\Connection::$datetime_format = 'Y-m-d H:i:s';
     }
 
 }

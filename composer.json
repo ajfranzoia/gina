@@ -12,6 +12,8 @@
         "raveren/kint": "^1.0",
         "twig/twig": "~2.0",
         "guzzlehttp/guzzle": "^6.2",
+        "j4mie/paris": "^1.5",
+        "php-activerecord/php-activerecord": "^1.1",
         "bocharsky-bw/arrayzy": "^0.6.1"
     },
     "autoload": {
