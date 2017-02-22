@@ -28,8 +28,8 @@ class View {
     public function render($template, $context = []) {
     	// Initialize Twig engine
 		$loader = new \Twig_Loader_Filesystem([
-			APP . self::VIEWS_DIR,
-			APP . self::VIEWS_DIR . DS . 'Layout'
+			APP . DS . self::VIEWS_DIR,
+			APP . DS . self::VIEWS_DIR . DS . 'Layout'
 		]);
 		$twig = new \Twig_Environment($loader);
 

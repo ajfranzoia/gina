@@ -11,7 +11,7 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', dirname(__DIR__));
 
 // App folder holding src
-define('APP', ROOT . DS . 'src' . DS);
+define('APP', ROOT . DS . 'src');
 
 // Require composer's autoload
 require ROOT . DS . 'vendor' . DS . 'autoload.php';
