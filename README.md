@@ -168,11 +168,11 @@ Gina follows the classic Model-View-Controller pattern, but other patterns and p
 * Based on the Factory pattern, a `ControllerFactory` class is used to load the correct controller making use of the PHP Reflection API. The controller class and action method are guessed from the request url.
 * Basic inheritance is used for most framework classes that extend other third party classes, which allows a more convenient customization and overriding.
 
-### Request cycle
+### Request processing flow
 
-An application request cycle is as follows:
+A basic  application flow for a request processing is as follows:
 
-
+![Request processing flow](https://raw.githubusercontent.com/ajfranzoia/gina/master/request-processing-flow.png)
 
 
 ## Tests
