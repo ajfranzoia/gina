@@ -131,7 +131,7 @@ class CarsController extends Controller {
 
 ## Demo application
 
-Gina includes a demo application that features a list of teams for the configured European football league and their basic data. It also allows selecting favorites for quick access. Data is fetched using the [FootballData public API](http://api.football-data.org).
+Gina includes a demo application that features a list of teams for the configured European football league and their basic data. It also allows selecting favorites for quick access. Data is fetched using the [FootballData public API](http://api.football-data.org). Guzzle is used as a client for HTTP requests.
 
 App configuration must be done in config/parameters.ini, using the footbalData INI section. Required configuration parameters are:
 
@@ -154,15 +154,15 @@ Status code:
 ### Third party libraries
 
 Instead of reinventing the wheel, Gina is built using known and tested PHP libraries:
-* [Symfony HTTP foundation component](https://github.com/symfony/http-foundation) provides an object-oriented layer on top of PHP global variables and functions for requests and responses handling. Chosen because ...
-* [Twig](https://github.com/twigphp/Twig) provides advanced template rendering capabilities.
+* [Symfony HTTP foundation component](https://github.com/symfony/http-foundation) provides an object-oriented layer on top of PHP global variables and functions for request and response handling. Used by several frameworks like Laravel, Symfony and Drupal.
+* [Twig](https://github.com/twigphp/Twig): instead of working with PHP low level functions like `ob_start()`, `ob_get_clean()`, etc., Twig provides flexible and advanced template rendering capabilities. Twig is both developer and designer friendly, thanks to its clean syntax.
 * [PHP ActiveRecord](https://github.com/jpfuentes2/php-activerecord) provides an easy to use ActiveRecord implementation.
-* [Arrayzy](https://github.com/bocharsky-bw/Arrayzy) provides wrappers for PHP built-in array functions and object-oriented array manipulation library, allowing a more functional array handling.
-* [Kint](https://github.com/raveren/kint) for debugging purposes.
+* [Arrayzy](https://github.com/bocharsky-bw/Arrayzy) provides wrappers for PHP built-in array functions and object-oriented array manipulation library, allowing a more functional array programming.
+* [Kint](https://github.com/raveren/kint) is used for debugging purposes, as a replacement for `var_dump()` and `debug_backtrace()` functions.
 
 ### Design principles
 
-Gina follows the classic Model-View-Controller pattern, but other patterns and principles were also taken into account:
+Gina follows the classic Model-View-Controller pattern, ensuring separation of presentation and logic, but other patterns and principles were also taken into account:
 * Front controller pattern is used in order to catch all the requests and have a single point of entry to the application. The front controller instantiates a new application Dispatcher and handles it the current request for further processing.
 * An application Dispatcher is used to process the current request and obtain a proper HTTP response. The Dispatcher will coordinate the request lifecycle: it will parse the current route, load the correct controller via a controller factory, initialize application models, and obtain the final response by executing the proper controller action. Finally, this generated response is sent to the client.
 * Based on the Factory pattern, a `ControllerFactory` class is used to load the correct controller making use of the PHP Reflection API. The controller class and action method are guessed from the request url.
