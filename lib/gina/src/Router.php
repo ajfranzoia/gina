@@ -31,7 +31,7 @@ class Router {
 	 * @return [type]           [description]
 	 */
 	public function parseRequest(Request $request) {
-		$url = $request->get('url');
+		$url = substr($request->getRequestUri(), 1);
 
 		// Explode url params by '/' using the provided url from .htaccess
         $urlParts = explode('/', $url);
