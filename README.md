@@ -172,7 +172,7 @@ Gina follows the classic Model-View-Controller pattern, but other patterns and p
 
 A basic  application flow for a request processing is as follows:
 
-![Request processing flow](https://raw.githubusercontent.com/ajfranzoia/gina/master/request-processing-flow.png)
+![Request processing flow](https://raw.githubusercontent.com/ajfranzoia/gina/master/request-flow-v3.png)
 
 
 ## Tests
