@@ -4,21 +4,21 @@ Lightweight MVC framework. Built on top of known and robust libraries.
 
 ## Installation and setup
 
-* Copy ```lib/gina/app-skeleton``` folder for a basic app structure into a new project.
+* Copy `lib/gina/app-skeleton` folder for a basic app structure into a new project.
 * Run `composer install` on the root folder.
-* If using a MySql database backend, configure connection parameters under ```config/parameters.ini```.
+* If using a MySql database backend, configure connection parameters under `config/parameters.ini`.
 
 ## Application structure
 
-* Application files must be located in the root ```src``` folder. Gina follows the classic MVC structure divided into controllers, models and views. PSR-4 namespace specification is used for autoloading.
-* Configuration is done in the ```config``` folder. ```bootstrap.php``` is utilized for app initialization and ```parameters.ini``` contains global configs.
-* Public webroot is located in the ```public``` folder, where the front controller ```index.php``` resides. CSS, scripts, and other static assets can be put in this directory.
+* Application files must be located in the root `src` folder. Gina follows the classic MVC structure divided into controllers, models and views. PSR-4 namespace specification is used for autoloading.
+* Configuration is done in the `config` folder. `bootstrap.php` is utilized for app initialization and `parameters.ini` contains global configs.
+* Public webroot is located in the `public` folder, where the front controller `index.php` resides. CSS, scripts, and other static assets can be put in this directory.
 
 ### Controllers
-Gina will search for controllers in the ```src/Controller``` folder. A controller's filename must end with ```Controller``` for it to be properly located by the autoloader.
-Controllers must extend the base framework controller class ```Gina\Controller``` and be under the ```App\Controller``` namespace.
+Gina will search for controllers in the `src/Controller` folder. A controller's filename must end with `Controller` for it to be properly located by the autoloader.
+Controllers must extend the base framework controller class `Gina\Controller` and be under the `App\Controller` namespace.
 Request can be handled by creating actions as instance methods, which will be called by the dispatcher when a request is received.
-If actions return an scalar value (e.g. a number or rendered HTML), it will be used as the response body. If a ```Gina\Response``` object is returned, that will be send as response.
+If actions return an scalar value (e.g. a number or rendered HTML), it will be used as the response body. If a `Gina\Response` object is returned, that will be send as response.
 
 Example controller:
 
@@ -77,7 +77,7 @@ class MyModel extends Model {
 ### Views
 
 Gina uses the library Twig in order to provide templating capabilities.
-Gina will search for views under the ```src/Views``` folder, which must have a ```.twig``` extension. Views have the full Twig functionality, which means they can use the complete Twig syntax, extend other views, include snippets, etc.
+Gina will search for views under the `src/Views` folder, which must have a `.twig` extension. Views have the full Twig functionality, which means they can use the complete Twig syntax, extend other views, include snippets, etc.
 
 Example view:
 
@@ -95,7 +95,7 @@ Example view:
 
 #### View rendering from a controller action
 
-To render a view and return its result from a controller action, the controller auxiliary method ```render()``` is provided. It accepts the view name and the required context variables for its rendering. The view will be searched using the controller name as a subfolder. If the view name is omitted, the action name will me used as the filename instead.
+To render a view and return its result from a controller action, the controller auxiliary method `render()` is provided. It accepts the view name and the required context variables for its rendering. The view will be searched using the controller name as a subfolder. If the view name is omitted, the action name will me used as the filename instead.
 
 Example:
 
@@ -131,7 +131,7 @@ class CarsController extends Controller {
 
 ## Demo application
 
-Gina includes a demo application that features a list of teams for the configured European football league and their basic data. It also allows selecting favorites for quick access.
+Gina includes a demo application that features a list of teams for the configured European football league and their basic data. It also allows selecting favorites for quick access. Data is fetched using the [FootballData public API](http://api.football-data.org).
 
 App configuration must be done in config/parameters.ini, using the footbalData INI section. Required configuration parameters are:
 
@@ -177,7 +177,8 @@ A basic  application flow for a request processing is as follows:
 
 ## Tests
 
-Framework tests can be run using phpunit by executing `composer run gina-tests`. Composer development packages are required tests to work properly.
+Framework tests can be run using phpunit by executing `composer run gina-tests`
+. Composer development packages are required for tests to work properly.
 
 ## TODOs
 
