@@ -5,6 +5,7 @@ Lightweight MVC framework. Built on top of known and robust libraries.
 ## Installation and setup
 
 * Copy ```lib/gina/app-skeleton``` folder for a basic app structure into a new project.
+* Run `composer install` on the root folder.
 * If using a MySql database backend, configure connection parameters under ```config/parameters.ini```.
 
 ## Application structure
