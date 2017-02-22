@@ -99,7 +99,10 @@ class Controller {
             $template = $this->currentAction;
         }
 
-        return $this->view->render($this->name . DS . $template, $context);
+        $output = $this->view->render($this->name . DS . $template, $context);
+        $this->response->setContent($output);
+
+        return $this->response;
     }
 
     protected function respondJson($data) {
