@@ -88,7 +88,15 @@ class Dispatcher {
      * @return void
      */
     protected function initializeModels() {
-        extract($this->config->get('database'));
+        $databaseParams = $this->config->get('database');
+
+        // If no database params configured, simply do nothing
+        // Useful for apps with no database backend
+        if (!$databaseParams) {
+            return;
+        }
+
+        extract($databaseParams);
 
         \ActiveRecord\Config::initialize(function($cfg) use ($host, $user, $password, $database) {
             $cfg->set_model_directory(APP . DS . 'Model');
