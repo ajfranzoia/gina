@@ -9,14 +9,13 @@
     ],
     "require": {
         "symfony/http-foundation": "^3.2",
-        "raveren/kint": "^1.0",
         "twig/twig": "~2.0",
         "guzzlehttp/guzzle": "^6.2",
-        "j4mie/paris": "^1.5",
         "php-activerecord/php-activerecord": "^1.1",
         "bocharsky-bw/arrayzy": "^0.6.1"
     },
     "require-dev": {
+        "raveren/kint": "^1.0",
         "phpunit/phpunit": "^6.0"
     },
     "autoload": {
