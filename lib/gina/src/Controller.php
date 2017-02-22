@@ -6,7 +6,7 @@ namespace Gina;
  * Base application controller class that holds business logic and
  * provides action methods that will be called by the application dispatcher.
  * Actions must return a response, which can be an integer, string, or a full Response object.
- * Current request can be accessed via $this->request or as the last argument of the action.
+ * Current request can be accessed via $this->request or as the first argument of the action.
  * Current response can be accessed via $this->response.
  */
 class Controller {
@@ -90,7 +90,7 @@ class Controller {
         // Call controller method and get returned result
         $callable = [$this, $action];
 
-        return call_user_func_array($callable, array_merge($namedParams, [$this->request]));
+        return call_user_func_array($callable, array_merge([$this->request], $namedParams));
 	}
 
     /**
