@@ -45,17 +45,22 @@ class TeamsController extends Controller {
 	 */
 	public function addFavorite($request, $teamId = null) {
 		if (!$request->isMethod('post')) {
-			throw new \Exception('This action requires POST', 400);
+			return $this->getInvalidMethodResponse();
 		}
 
 		if (!$teamId) {
-			throw new \Exception('Missing team id', 400);
+			return $this->getMissingTeamIdResponse();
 		}
 
 		$favorite = TeamFavorite::find_by_team_id($teamId);
 
 		if ($favorite) {
-			return $this->respondJson(['result' => true]);
+			return $this
+				->respondJson([
+					'result' => false,
+					'error' => 'Team is already set as favorite'
+				])
+				->setStatusCode(400);
 		}
 
 		TeamFavorite::create([
@@ -75,22 +80,55 @@ class TeamsController extends Controller {
 	 */
 	public function removeFavorite($request, $teamId = null) {
 		if (!$request->isMethod('post')) {
-			throw new \Exception('This action requires POST', 400);
+			return $this->getInvalidMethodResponse();
 		}
 
 		if (!$teamId) {
-			throw new \Exception('Missing team id', 400);
+			return $this->getMissingTeamIdResponse();
 		}
 
 		$favorite = TeamFavorite::find_by_team_id($teamId);
 
 		if (!$favorite) {
-			return $this->respondJson(['result' => true]);
+			return $this
+				->respondJson([
+					'result' => false,
+					'error' => 'Team is already set as non favorite'
+				])
+				->setStatusCode(400);
 		}
 
 		$favorite->delete();
 
 		return $this->respondJson(['result' => true]);
+	}
+
+	/**
+	 * Returns proper 405 response for non POST requests
+	 *
+	 * @return Response
+	 */
+	protected function getInvalidMethodResponse() {
+		return $this
+			->respondJson([
+				'result' => false,
+				'error' => 'This action requires POST'
+			])
+			->setStatusCode(405);
+	}
+
+	/**
+	 * Returns proper 400 response for request that lack a team id
+	 *
+	 * @return Response
+	 */
+	protected function getMissingTeamIdResponse() {
+		return $this
+			->respondJson([
+				'result' => false,
+				'error' => 'Missing team id'
+			])
+			->setStatusCode(400);
 	}
 
 }
