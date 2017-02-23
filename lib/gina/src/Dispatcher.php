@@ -24,9 +24,9 @@ class Dispatcher {
 	 * Initialize dispatcher with router object and an empty response
 	 */
 	public function __construct() {
-		$this->router = new Router();
 		$this->response = new Response();
         $this->config = Config::loadFromIni(ROOT . DS . 'config' . DS . 'parameters.ini');
+        $this->router = new Router($this->config);
 	}
 
     /**

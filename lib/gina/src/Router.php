@@ -11,6 +11,20 @@ class Router {
 
 	const DEFAULT_ACTION = 'index';
 
+    /**
+     * @var Config
+     */
+    protected $config;
+
+    /**
+     * Initializes current request and response properties.
+     *
+     * @param Request $request
+     */
+	public function __construct(Config $config) {
+        $this->config = $config;
+	}
+
 	/**
 	 * Parses the current request and returns basic route data.
 	 * Splits url using slash as delimiter, and assigns first value as
@@ -32,6 +46,16 @@ class Router {
 	 */
 	public function parseRequest(Request $request) {
 		$url = substr($request->getRequestUri(), 1);
+
+		// If the matched url is the root path, return configured route in parameters.ini
+		if ($url === '') {
+			$rootRoute = explode('/', $this->config->get('routing')['root']);
+			return [
+				'controller' => $rootRoute[0],
+				'action' => $rootRoute[1],
+				'namedParams' => []
+			];
+		}
 
 		// Explode url params by '/' using the provided url from .htaccess
         $urlParts = explode('/', $url);

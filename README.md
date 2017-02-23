@@ -47,6 +47,16 @@ Simpler controller/action routes are supported in the form of:
 
 Controller names are converted to camelcase, so both `http://host/my-controller/view` and `http://host/my_controller/view` will match to `MyController::index()` action.
 
+A root route with the format `Controller/action` must be configured in `config/parameters.ini` under the `routing` section, which will indicate the default route.
+
+Example
+
+```
+[routing]
+root=Teams/index
+```
+
+
 ### Models
 
 Gina uses the library PHP ActiveRecord to provide ORM functionality.
@@ -133,7 +143,7 @@ class CarsController extends Controller {
 
 Gina includes a demo application that features a list of teams for the configured European football league and their basic data. It also allows selecting favorites for quick access. Data is fetched using the [FootballData public API](http://api.football-data.org). Guzzle is used as a client for HTTP requests.
 
-App configuration must be done in config/parameters.ini, using the footbalData INI section. Required configuration parameters are:
+App configuration must be done in `config/parameters.ini`, using the footbalData INI section. Required configuration parameters are:
 
 | Parameter  | Type | Description |
 | ------------- | ------------- | ------------- |
