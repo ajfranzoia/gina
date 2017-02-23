@@ -32,12 +32,12 @@ class ControllerFactory {
 		try {
         	$reflection = new \ReflectionClass($className);
 		} catch (\Exception $e) {
-	        throw new Exception("Missing controller: $className");
+	        throw new \Exception("Missing controller: $className");
 		}
 
 		// Check if controller class can be instantiated
         if (!$this->canInstantiate($reflection)) {
-	        throw new Exception("Controller $className cannot be instantiated");
+	        throw new \Exception("Controller $className cannot be instantiated");
         }
 
         // Return a new instance of the controller, passing the current request to constructor
