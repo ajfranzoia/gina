@@ -170,6 +170,13 @@ Possible responses:
 | 400  | `{"result": true, "error": "Team is already set as favorite"}`  |  If the target team is already marked as non favorite |
 | 405  | `{"result": false, "error": "This action requires POST" }`  |  If the request type is not POST |
 
+* `GET /players/{teamId`: returns a HTML table with the players listed and sorted alphabetically for the given team id
+
+Possible responses:
+
+| HTTP code  | Body | Comments |
+| ------------- | ------------- | ------------- |
+| 200  | HTML view  |   |
 
 ## Framework architecture
 
