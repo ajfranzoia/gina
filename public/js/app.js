@@ -11,6 +11,7 @@
    */
   function initializeApp() {
   	$teams.on('click', '.team-favorite-toggle', toggleFavorite);
+    $teams.on('click', '.show-players', showPlayers);
   }
 
   /**
@@ -36,7 +37,7 @@
   	var teamId = $team.data('team-id');
   	var isFavorite = $team.data('is-favorite');
   	var action = isFavorite ? 'remove_favorite' : 'add_favorite';
-  	var url = '/teams/' + action  + '/' + $team.data('team-id');
+  	var url = '/teams/' + action  + '/' + teamId;
 
   	$favoriteToggle.addClass('working');
 
@@ -81,6 +82,40 @@
 		$.each(sortedTeams, function (index, value) {
 		  $teams.append(value);
 		});
+  }
+
+  /**
+   * Show team players
+   *
+   * @param  {Event} event
+   * @return undefined
+   */
+  function showPlayers(event) {
+    event.preventDefault();
+
+    var $showBtn = $(event.currentTarget);
+
+    // Do nothing if a change is already on process
+    if ($showBtn.is('disabled')) {
+      return;
+    }
+
+    $showBtn.attr('disabled', true);
+    $showBtn.html('Loading...');
+
+    // Get team data and generate request url
+    var $team = $(event.currentTarget).closest('.team');
+    var $playersContainer = $team.find('.team-players');
+    var teamId = $team.data('team-id');
+    var url = '/players/index/' + teamId;
+
+    // Make post request to set/unset favorite status
+    $.ajax(url, {
+      method: 'get'
+    })
+      .done(function(data) {
+        $playersContainer.html(data);
+      });
   }
 
 })();

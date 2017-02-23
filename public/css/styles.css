@@ -39,7 +39,6 @@ body {
 	margin-left: 20px;
 }
 
-
 .team-favorite-toggle {
 	position: absolute;
 	top: 10px;
@@ -50,4 +49,12 @@ body {
 
 .team-favorite-toggle.working {
 	opacity: 0.3;
+}
+
+.team-players table {
+	background-color: white;
+}
+
+.team-players .panel-group {
+	margin-bottom: 0;
 }

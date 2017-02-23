@@ -5,6 +5,11 @@
 			{{ team.name|e }}
 			<span class="team-market-value" title="Market value">{{ team.squadMarketValue|e }}</span>
 		</h2>
+		<div class="team-players">
+			<button class="show-players btn btn-sm btn-default">
+				<i class="fa fa-group"></i> Show team players
+			</button>
+		</div>
 	</div>
 	<a href="#" class="team-favorite-toggle">
 		{% if isFavorite %}
